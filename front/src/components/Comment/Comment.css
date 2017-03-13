@@ -1,0 +1,14 @@
+.comment-container {
+    position: relative;
+    padding: 20px;
+    height: 180px;
+    margin: 10px;
+    box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.4);
+}
+
+.comment-date {
+    position: absolute;
+    top: 120px;
+    text-align: right;
+    width: 90%;
+}

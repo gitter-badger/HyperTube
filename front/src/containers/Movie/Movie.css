@@ -1,0 +1,27 @@
+.synopsis-container {
+    border-radius: 5px;
+    box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.7);
+    text-align: center;
+    padding: 20px;
+}
+
+.synopsis-title {
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+
+.synopsis-data {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.info-container {
+    margin-top: 50px;
+    text-align: left;
+}
+
+.info-title {
+    margin-top: 15px;
+    margin-bottom: 10px;
+    text-align: center;
+}
