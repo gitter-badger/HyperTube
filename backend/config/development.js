@@ -1,19 +1,15 @@
 module.exports = {
   db: {
-    host: 'localhost',
+    host: '127.0.0.1',
     port: '27017',
     dbName: 'hypertube',
   },
   server: {
     port: '8080',
-    url: 'http://127.0.0.1:8080',
   },
-  jwt: {
-    secret: '1l0v3s3cr3t',
-  },
-  password: {
-    algorithm: 'aes-256-ctr',
-    key: '1l0v3k3ys',
+  urls: {
+    api: 'http://127.0.0.1:8080',
+    front: 'http://127.0.0.1:8000',
   },
   redis: {
     host: '127.0.0.1',

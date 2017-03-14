@@ -19,17 +19,11 @@ export const basicOauthController = (req, res) => {
       if (!foundUser) { return new User(filter(req.user, permitted)).save() }
       return Promise.resolve(foundUser)
     })
-    .then((user) => {
-      res.json({
-        results: {
-          user: user.serialize,
-          token: createtoken(user._id),
-        },
-        message: 'Successfully logged in',
-      })
-      // Or! Maybe do a res.redirect('uri?token=...)
+    .then((user) => res.redirect(`${Config.urls.front}/home?token=${createToken(user._id)}`))
+    .catch((err) => {
+      Logger.error(err)
+      res.redirect(`${Config.urls.front}/login`)
     })
-    .catch((err) => handleError(err, res, 'Error while authentifying user'))
 }
 
 export const signUp = (req, res) => {
@@ -56,10 +50,16 @@ export const signUp = (req, res) => {
 }
 
 export const signIn = (req, res) => {
-  User.findOne(filter(req.body, '{email,password}'))
+  User.findOne({ email: req.body.email })
     .then((user) => {
-      if (!user) { return res.json({ results: null, message: 'Email and password not matching' }) }
-      if (!user.isPasswordValid) { return handleError(new ValidationError('password', 'not verified'), res) }
+      if (!user) { return Promise.reject(new NotFoundError('User')) }
+      if (!user.password) { return Promise.reject(new UndefinedPassword) }
+      if (!user.isPasswordValid) {
+        return res.json({ results: null, message: 'Password is not verified' })
+      }
+      if (user.password !== req.body.password) {
+        return res.json({ results: null, message: 'Password and email are not matching' })
+      }
       res.json({
         results: {
           user: user.serialize,
@@ -94,6 +94,7 @@ export const assertPassword = (req, res) => {
     .then((token) => {
       if (!token) { return Promise.reject(new NotFoundError('Reset password token')) }
       if (token !== req.body.token) { return Promise.reject(new ValidationError('token', 'invalid')) }
+      RedisClient.del(req.body.email)
 
       const newPassword = decryptToken(token)
       return User.findOneAndUpdate(

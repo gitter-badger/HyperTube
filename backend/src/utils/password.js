@@ -1,7 +1,7 @@
 import crypto from "crypto"
 import { ValidationError, handleError } from "./errors.js"
 
-const { algorithm, key } = Config.password
+const { algorithm, key } = require('../../.passwords.json').password
 
 export const encrypt = (password) => {
   const cipher = crypto.createCipher(algorithm, password)
@@ -11,7 +11,7 @@ export const encrypt = (password) => {
 }
 
 export const encryptMiddleware = (req, res, next) => {
-  if (!req.body.password) { handleError(new ValidationError('password', 'not present'), res) }
+  if (!req.body.password) { return handleError(new ValidationError('password', 'not present'), res) }
   req.body.password = encrypt(req.body.password)
   next()
 }

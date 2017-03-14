@@ -1,6 +1,8 @@
 import passport from "passport"
 import { Strategy as FacebookStrategy } from "passport-facebook"
 
+const credentials = require('../../.passwords.json').credentials
+
 const baseOauthMiddleware = (accessToken, refreshToken, profile, done) => {
     Logger.silly(`Profile from ${profile.provider}`, JSON.stringify(profile))
     const user = {}
@@ -41,9 +43,9 @@ const baseOauthMiddleware = (accessToken, refreshToken, profile, done) => {
 
 const initFacebookStrategy = () => {
   passport.use(new FacebookStrategy({
-      clientID: '130094950851701',
-      clientSecret: 'd27ffbe69b3fa95d029372fac7ca3d23',
-      callbackURL: `${Config.server.url}/auth/fb/callback`,
+      clientID: credentials.facebook.clientID,
+      clientSecret: credentials.facebook.clientSecret,
+      callbackURL: `${Config.urls.api}/auth/fb/callback`,
       profileFields: ['id', 'emails', 'name', 'photos', 'displayName'],
     },
     baseOauthMiddleware,

@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken"
 import { handleError, BadAuthorizationError } from "./errors.js"
 
-const { secret } = Config.jwt
+const { secret } = require('../../.passwords.json').jwt
 
 export const createToken = (obj) => jwt.sign(obj, secret)
 
