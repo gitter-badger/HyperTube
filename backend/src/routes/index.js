@@ -1,8 +1,10 @@
 import express from "express"
 import { inspect } from "util"
+import authRoutes from "./Auth.route.js"
 import userRoutes from "./User.route.js"
 
 const routes = [
+  ...authRoutes,
   ...userRoutes,
 ]
 

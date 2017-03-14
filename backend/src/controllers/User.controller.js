@@ -15,37 +15,6 @@ export const getAllUsers = (req, res, next) => {
     .catch(err => handleError(err, res, 'Error while getting users'))
 }
 
-export const createUser = (req, res, next) => {
-  const newUser = new User(filter(req.body, permitted))
-  newUser.valid = false
-  newUser.save()
-    .then(savedUser => {
-      res.status(201).json({ results: savedUser.serialize, message: 'User created' })
-    })
-    .catch(err => handleError(err, res, 'Error while creating user'))
-}
-
-export const validUserEmail = (req, res, next) => {
-  User.findOneAndUpdate({ _id: req.params.id }, { valid: true }, { new: true })
-    .then(updatedUser => {
-      if (!updatedUser) { return Promise.reject(new NotFoundError('User')) }
-      res.json({
-        results: updatedUser.serialize,
-        message: 'Successfully validated user email',
-      })
-    })
-    .catch(err => handleError(err, res, 'Error while validating user'))
-}
-
-export const resetUserPassword = (req, res, next) => {
-  User.findOneAndUpdate({ _id: req.params.id }, { password: req.body.password }, { new: true })
-    .then(updatedUser => {
-      results: updatedUser.serialize,
-      message: 'Successfully changed user password',
-    })
-    .catch(err => handleError(err, res, 'Error while changing user password'))
-}
-
 export const getUserById = (req, res, next) => {
   User.findById(req.params.id)
     .then(foundUser => {

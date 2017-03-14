@@ -1,13 +1,13 @@
 import mongoose from "mongoose"
 
 import { handleError, ValidationError, NotAuthorizedError, BadAuthorizationError } from "../utils/errors.js"
-import encryptPassword from "../utils/passwordEncryption.js"
+//import encryptPassword from "../utils/passwordEncryption.js"
 import validImage from "../utils/validImage.js"
 import { extractToken } from "../utils/jwt.js"
 
 export const createUser = (req, res, next) => {
   if (!req.body.password) { return handleError(new ValidationError('password', 'not found'), res) }
-  req.body.password = encryptPassword(req.body.password)
+  //req.body.password = encryptPassword(req.body.password)
 
   // TODO handle image and set req.body.profilePhoto to the saved path
   return next()

@@ -19,7 +19,14 @@ export class BadAuthorizationError {
 export class NotAuthorizedError {
 }
 
+export class AlreadyExistingAccount {
+}
+
+export class UndefinedPassword {
+}
+
 export const handleError = (err, res, message) => {
+  Logger.error('In error handler', err)
   if (err instanceof NotFoundError) {
     return res.status(404).json({ results: null, message: `${err.target} not found` })
   } else if (err instanceof ValidationError) {
@@ -27,7 +34,11 @@ export const handleError = (err, res, message) => {
   } else if (err instanceof BadAuthorizationError) {
     return res.status(401).json({ results: null, message: `Authorization header is ${err.problem}` })
   } else if (err instanceof NotAuthorizedError) {
-    return res.status(403).json({ results: null, message: 'You are noe authorized to perform this action' })
+    return res.status(403).json({ results: null, message: 'You are not authorized to perform this action' })
+  } else if (err instanceof AlreadyExistingAccount) {
+    return res.status(400).json({ results: null, message: 'Account already exists' })
+  } else if (err instanceof UndefinedPassword) {
+    return res.status(400).json({ results: null, message: 'Password not defined' })
   }
   res.status(500).json({ results: null, message })
 }

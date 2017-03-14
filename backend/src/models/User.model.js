@@ -1,15 +1,14 @@
 import mongoose from "mongoose"
-import passwordEncryption from "passwordEncryption"
 mongoose.Promise = global.Promise
 
 const UserSchema = mongoose.Schema({
+  nickname: {type: String},
   email: {type: String, required: true, unique: true},
-  nickname: {type: String, required: true, unique: true},
-  password: {type: String, required: true},
-  valid: {type: Boolean, required: true},
+  isPasswordValid: {type: Boolean, default: false},
+  password: {type: String},
   firstname: {type: String},
   lastname: {type: String},
-  profilePhoto: {type: String, required: true},
+  profilePhoto: {type: String},
 })
 
 UserSchema.virtual('lightSerialize').get(function() {

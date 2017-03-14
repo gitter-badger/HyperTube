@@ -1,24 +1,26 @@
 import jwt from "jsonwebtoken"
+import { handleError, BadAuthorizationError } from "./errors.js"
 
-const secret = require('../../config/development.js').jwt.secret
+const { secret } = Config.jwt
 
 export const createToken = (obj) => jwt.sign(obj, secret)
 
-export const decryptToken = (token) => jwt.verify(obj, secret)
+export const decryptToken = (token) => jwt.verify(token, secret)
 
-export const extractToken = (headers) => {
+export const jwtMiddleWare = (req, res, next) => {
   if (!headers || !headers.authorization) {
-    throw 'not found'
+    return handleError(new BadAuthorizationError('not found'), res)
   }
 
   const splitted = headers.authorization.split(' ')
   if (splitted.length !== 2 || splitted[0] !== 'Bearer') {
-    throw 'bad formatted'
+    return handleError(new BadAuthorizationError('bad formatted'), res)
   }
 
   try {
-    return jwt.verify(splitted[1], secret)
+    req.user = jwt.verify(splitted[1], secret)
+    return next()
   } catch (e) {
-    throw 'invalid'
+    return handleError(new BadAuthorizationError('invalid'), res)
   }
 }

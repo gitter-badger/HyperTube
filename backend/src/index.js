@@ -3,52 +3,41 @@ import express from "express"
 import mongoose from "mongoose"
 import bodyParser from "body-parser"
 import passport from "passport"
-import { Strategy } from "passport-jwt"
+import morgan from "morgan"
+import winston from "winston"
+import ioredis from "ioredis"
 
 import configs from "../config/index.js"
-import createRouter from "./routes/index.js"
 
-const Logger = console
 
 const app = express()
 
-const env = process.env.node_end || 'development'
+const env = process.env.node_env || 'development'
 const config = configs[env]
 
+global.Config = config
+
 global.User = require('./models/User.model.js').default
+
+global.Logger = new (winston.Logger)({
+  transports: config.logger.map((t) => new (winston.transports[t.type])(t.configuration)),
+})
+
+global.RedisClient = new ioredis(config.redis)
+
+const createRouter = require('./routes/index.js').default
+const createPassport = require('./utils/passport.js').default
+
+createPassport()
 
 app.use(cors())
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
-passport.use(new Strategy({
-  jwtFromRequest: (req) => {
-    try {
-      console.log('Header', req.headers.authorization)
-      if (!req.headers || !req.headers.authorization) { return null }
+app.use(passport.initialize())
 
-      const splitted = req.headers.authorization.split(' ')
-      if (splitted.length !== 2 || splitted[0] !== 'Bearer') { return null }
-      console.log('Token', splitted[1])
-      return splitted[1]
-    } catch (e) {
-      return null
-    }
-  },
-  secretOrKey: config.jwt.secret,
-}, (payload, done) => {
-  console.log('Payload', payload)
-  User.findById(payload.id, (err, user) => {
-    if (err) {
-      return done(err, false)
-    } else if (user) {
-      return done(null, user)
-    } else {
-      return done(null, false)
-    }
-  })
-}))
+app.use(morgan("combined", { stream: { write: (msg) => Logger.verbose(msg) } }))
 
 mongoose.Promise = global.Promise
 
@@ -63,5 +52,5 @@ db.once('open', () => {
   createRouter(app)
   app.listen(config.server.port)
   app.emit('ready')
-  Logger.log(`App is running and listening to port ${config.server.port}`)
+  Logger.verbose(`App is running and listening to port ${config.server.port}`)
 })
