@@ -2,6 +2,16 @@
 # yarn lockfile v1
 
 
+"@types/react-dom@^0.14.23":
+  version "0.14.23"
+  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-0.14.23.tgz#cecfcfad754b4c2765fe5d29b81b301889ad6c2e"
+  dependencies:
+    "@types/react" "*"
+
+"@types/react@*", "@types/react@^15.0.16":
+  version "15.0.16"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-15.0.16.tgz#78e39511a9cfcabf7f74ecd55180522f4290a0c1"
+
 abab@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/abab/-/abab-1.0.3.tgz#b81de5f7274ec4e756d797cd834f303642724e5d"
@@ -488,11 +498,11 @@ babel-plugin-syntax-object-rest-spread@^6.8.0:
   version "6.13.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-syntax-object-rest-spread/-/babel-plugin-syntax-object-rest-spread-6.13.0.tgz#fd6536f2bce13836ffa3a5458c4903a597bb3bf5"
 
-babel-plugin-syntax-trailing-function-commas@^6.13.0, babel-plugin-syntax-trailing-function-commas@^6.22.0:
+babel-plugin-syntax-trailing-function-commas@^6.13.0:
   version "6.22.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-syntax-trailing-function-commas/-/babel-plugin-syntax-trailing-function-commas-6.22.0.tgz#ba0360937f8d06e40180a43fe0d5616fff532cf3"
 
-babel-plugin-transform-async-to-generator@^6.22.0, babel-plugin-transform-async-to-generator@^6.8.0:
+babel-plugin-transform-async-to-generator@^6.8.0:
   version "6.22.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-transform-async-to-generator/-/babel-plugin-transform-async-to-generator-6.22.0.tgz#194b6938ec195ad36efc4c33a971acf00d8cd35e"
   dependencies:
@@ -677,7 +687,7 @@ babel-plugin-transform-es2015-unicode-regex@^6.22.0, babel-plugin-transform-es20
     babel-runtime "^6.22.0"
     regexpu-core "^2.0.0"
 
-babel-plugin-transform-exponentiation-operator@^6.22.0, babel-plugin-transform-exponentiation-operator@^6.8.0:
+babel-plugin-transform-exponentiation-operator@^6.8.0:
   version "6.22.0"
   resolved "https://registry.yarnpkg.com/babel-plugin-transform-exponentiation-operator/-/babel-plugin-transform-exponentiation-operator-6.22.0.tgz#d57c8335281918e54ef053118ce6eb108468084d"
   dependencies:
@@ -760,9 +770,9 @@ babel-plugin-transform-strict-mode@^6.22.0:
     babel-runtime "^6.22.0"
     babel-types "^6.22.0"
 
-babel-preset-env@1.1.8:
-  version "1.1.8"
-  resolved "https://registry.yarnpkg.com/babel-preset-env/-/babel-preset-env-1.1.8.tgz#c46734c6233c3f87d177513773db3cf3c1758aaa"
+babel-preset-env@1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/babel-preset-env/-/babel-preset-env-1.2.1.tgz#659178f54df74a74765f796be4d290b5beeb3f5f"
   dependencies:
     babel-plugin-check-es2015-constants "^6.3.13"
     babel-plugin-syntax-trailing-function-commas "^6.13.0"
@@ -792,6 +802,8 @@ babel-preset-env@1.1.8:
     babel-plugin-transform-exponentiation-operator "^6.8.0"
     babel-plugin-transform-regenerator "^6.6.0"
     browserslist "^1.4.0"
+    electron-to-chromium "^1.1.0"
+    invariant "^2.2.2"
 
 babel-preset-es2015@^6.22.0:
   version "6.22.0"
@@ -822,19 +834,6 @@ babel-preset-es2015@^6.22.0:
     babel-plugin-transform-es2015-unicode-regex "^6.22.0"
     babel-plugin-transform-regenerator "^6.22.0"
 
-babel-preset-es2016@^6.22.0:
-  version "6.22.0"
-  resolved "https://registry.yarnpkg.com/babel-preset-es2016/-/babel-preset-es2016-6.22.0.tgz#b061aaa3983d40c9fbacfa3743b5df37f336156c"
-  dependencies:
-    babel-plugin-transform-exponentiation-operator "^6.22.0"
-
-babel-preset-es2017@^6.22.0:
-  version "6.22.0"
-  resolved "https://registry.yarnpkg.com/babel-preset-es2017/-/babel-preset-es2017-6.22.0.tgz#de2f9da5a30c50d293fb54a0ba15d6ddc573f0f2"
-  dependencies:
-    babel-plugin-syntax-trailing-function-commas "^6.22.0"
-    babel-plugin-transform-async-to-generator "^6.22.0"
-
 babel-preset-flow@^6.23.0:
   version "6.23.0"
   resolved "https://registry.yarnpkg.com/babel-preset-flow/-/babel-preset-flow-6.23.0.tgz#e71218887085ae9a24b5be4169affb599816c49d"
@@ -847,17 +846,9 @@ babel-preset-jest@^18.0.0:
   dependencies:
     babel-plugin-jest-hoist "^18.0.0"
 
-babel-preset-latest@6.22.0:
-  version "6.22.0"
-  resolved "https://registry.yarnpkg.com/babel-preset-latest/-/babel-preset-latest-6.22.0.tgz#47b800531350a3dc69126e8c375a40655cd1eeff"
-  dependencies:
-    babel-preset-es2015 "^6.22.0"
-    babel-preset-es2016 "^6.22.0"
-    babel-preset-es2017 "^6.22.0"
-
-babel-preset-react-app@^2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/babel-preset-react-app/-/babel-preset-react-app-2.1.1.tgz#837b0dc784599523b3d4f1b700aed13055824141"
+babel-preset-react-app@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/babel-preset-react-app/-/babel-preset-react-app-2.2.0.tgz#3143bcf316049f78b5f9d0422fd7822ca4715ca4"
   dependencies:
     babel-plugin-transform-class-properties "6.22.0"
     babel-plugin-transform-object-rest-spread "6.22.0"
@@ -867,8 +858,7 @@ babel-preset-react-app@^2.1.1:
     babel-plugin-transform-react-jsx-source "6.22.0"
     babel-plugin-transform-regenerator "6.22.0"
     babel-plugin-transform-runtime "6.22.0"
-    babel-preset-env "1.1.8"
-    babel-preset-latest "6.22.0"
+    babel-preset-env "1.2.1"
     babel-preset-react "6.22.0"
     babel-runtime "6.22.0"
 
@@ -1302,12 +1292,6 @@ commander@2.9.x:
   dependencies:
     graceful-readlink ">= 1.0.0"
 
-commander@~2.8.1:
-  version "2.8.1"
-  resolved "https://registry.yarnpkg.com/commander/-/commander-2.8.1.tgz#06be367febfda0c330aa1e2a072d3dc9762425d4"
-  dependencies:
-    graceful-readlink ">= 1.0.0"
-
 commondir@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/commondir/-/commondir-1.0.1.tgz#ddd800da0c66127393cca5950ea968a3aaf1253b"
@@ -1568,7 +1552,7 @@ date-now@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/date-now/-/date-now-0.1.4.tgz#eaf439fd4d4848ad74e5cc7dbef200672b9e345b"
 
-debug@2, debug@2.6.1, debug@^2.1.0, debug@^2.1.1, debug@^2.2.0:
+debug@2, debug@2.6.1, debug@^2.1.0, debug@^2.1.1, debug@^2.2.0, debug@^2.6.0:
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/debug/-/debug-2.6.1.tgz#79855090ba2c4e3115cc7d8769491d58f0491351"
   dependencies:
@@ -1640,11 +1624,11 @@ detect-indent@^4.0.0:
   dependencies:
     repeating "^2.0.0"
 
-detect-port@1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/detect-port/-/detect-port-1.0.1.tgz#3e1aa6a7ff6677bb60894b291172529d880c1e85"
+detect-port@1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/detect-port/-/detect-port-1.1.0.tgz#fde7574591ea3de74445782643c3f921b2a4618c"
   dependencies:
-    commander "~2.8.1"
+    debug "^2.6.0"
 
 diff@^3.0.0:
   version "3.2.0"
@@ -1723,7 +1707,7 @@ ee-first@1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/ee-first/-/ee-first-1.1.1.tgz#590c61156b0ae2f4f0255732a158b266bc56b21d"
 
-electron-to-chromium@^1.2.5:
+electron-to-chromium@^1.1.0, electron-to-chromium@^1.2.5:
   version "1.2.6"
   resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.2.6.tgz#f38ad51d1919b06bc07275c62629db803ddca05a"
 
@@ -1849,9 +1833,9 @@ escope@^3.6.0:
     esrecurse "^4.1.0"
     estraverse "^4.1.1"
 
-eslint-config-react-app@^0.6.1:
-  version "0.6.1"
-  resolved "https://registry.yarnpkg.com/eslint-config-react-app/-/eslint-config-react-app-0.6.1.tgz#3898e56c8a1a51f21364780243c80d1c796e305e"
+eslint-config-react-app@^0.6.2:
+  version "0.6.2"
+  resolved "https://registry.yarnpkg.com/eslint-config-react-app/-/eslint-config-react-app-0.6.2.tgz#ee535cbaaf9e3576ea16b99afe720353d8730ec0"
 
 eslint-import-resolver-node@^0.2.0:
   version "0.2.3"
@@ -2658,7 +2642,7 @@ interpret@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/interpret/-/interpret-1.0.1.tgz#d579fb7f693b858004947af39fa0db49f795602c"
 
-invariant@^2.1.0, invariant@^2.2.0, invariant@^2.2.1:
+invariant@^2.1.0, invariant@^2.2.0, invariant@^2.2.1, invariant@^2.2.2:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/invariant/-/invariant-2.2.2.tgz#9e1f56ac0acdb6bf303306f338be3b204ae60360"
   dependencies:
@@ -4346,26 +4330,26 @@ react-router@^3.0.2:
     loose-envify "^1.2.0"
     warning "^3.0.0"
 
-react-scripts@0.9.4:
-  version "0.9.4"
-  resolved "https://registry.yarnpkg.com/react-scripts/-/react-scripts-0.9.4.tgz#e43ca46f4641561dd84caae4c91795923defda4f"
+react-scripts@0.9.5:
+  version "0.9.5"
+  resolved "https://registry.yarnpkg.com/react-scripts/-/react-scripts-0.9.5.tgz#e9f05c8427e27131662a9b9d7a9786d1ff16bb3f"
   dependencies:
     autoprefixer "6.7.2"
     babel-core "6.22.1"
     babel-eslint "7.1.1"
     babel-jest "18.0.0"
     babel-loader "6.2.10"
-    babel-preset-react-app "^2.1.1"
+    babel-preset-react-app "^2.2.0"
     babel-runtime "^6.20.0"
     case-sensitive-paths-webpack-plugin "1.1.4"
     chalk "1.1.3"
     connect-history-api-fallback "1.3.0"
     cross-spawn "4.0.2"
     css-loader "0.26.1"
-    detect-port "1.0.1"
+    detect-port "1.1.0"
     dotenv "2.0.0"
     eslint "3.16.1"
-    eslint-config-react-app "^0.6.1"
+    eslint-config-react-app "^0.6.2"
     eslint-loader "1.6.0"
     eslint-plugin-flowtype "2.21.0"
     eslint-plugin-import "2.0.1"
