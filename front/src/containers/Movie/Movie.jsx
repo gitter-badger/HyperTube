@@ -18,13 +18,14 @@ class Movie extends Component {
     constructor (props) {
         super(props);
         this.state = {
+            props: props,
             movie: []
         };
     }
 
     componentDidMount(){
-        let value = 'Logan';
-        axios.get('http://www.omdbapi.com/?t='+value+'&r=json')
+        let value = this.state.props.params.id;
+        axios.get('http://www.omdbapi.com/?i='+value+'&r=json')
             .then((response) => {
                 console.log(response.data);
                 if(response.data !== undefined){
@@ -48,13 +49,13 @@ class Movie extends Component {
             <div className="movie-view container">
                 <div className="synopsis-container">
                     <Row>
-                        <Col xs={4}>
+                        <Col lg={4} lgOffset={0} xs={4} xsOffset={4}>
                             <div className="synopsis-image">
                                 <img width="100%" height="auto" src={movie.Poster}/>
                             </div>
                         </Col>
 
-                        <Col xs={8}>
+                        <Col lg={8} xs={12}>
                             <h4 className="synopsis-title">SYNOPSIS</h4>
                             <p className="synopsis-data">{movie.Plot}</p>
                             <div className="info-container">

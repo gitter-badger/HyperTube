@@ -7,10 +7,13 @@ import TweetBox from '../../components/TweetBox';
 import './Home.css'
 
 class Home extends Component {
-
-    state = {
-        tweets: [],
-    };
+    constructor (props) {
+        localStorage.setItem('token', 'toto');
+        super(props);
+        this.state = {
+            movies: []
+        };
+    }
 
     publish = (tweet) => {
         const { tweets } = this.state;
@@ -32,15 +35,15 @@ class Home extends Component {
 
         return (
             <div className="homepage">
-                <a href="/movies/1">test</a>
+                <a href="/movies">Voir les film</a>
                 <div className="tweets">
-                    <TweetBox publish={this.publish}/>
-                    {tweets.map((tweet, index) => (
-                        <Tweet
-                            key={index}
-                            {...tweet}
-                        />
-                    ))}
+                    {/*<TweetBox publish={this.publish}/>*/}
+                    {/*{tweets.map((tweet, index) => (*/}
+                        {/*<Tweet*/}
+                            {/*key={index}*/}
+                            {/*{...tweet}*/}
+                        {/*/>*/}
+                    {/*))}*/}
                 </div>
             </div>
         )};

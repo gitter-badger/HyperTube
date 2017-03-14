@@ -64,7 +64,7 @@ class Navbarmain extends Component {
             <Navbar inverse collapseOnSelect>
                 <Navbar.Header>
                     <Navbar.Brand>
-                        <a href="#">Hypertube</a>
+                        <a href="/">Hypertube</a>
                     </Navbar.Brand>
                     <Navbar.Toggle />
                 </Navbar.Header>

@@ -1,0 +1,12 @@
+.container-movie {
+    height: 500px;
+}
+
+.movie-image {
+    width: 100%;
+    height: 450px;
+}
+
+.movie-name {
+    color: #e74c3c;
+}
