@@ -46,7 +46,7 @@ const initFacebookStrategy = () => {
       clientID: credentials.facebook.clientID,
       clientSecret: credentials.facebook.clientSecret,
       callbackURL: `${Config.urls.api}/auth/fb/callback`,
-      profileFields: ['id', 'emails', 'name', 'photos', 'displayName'],
+      profileFields: ['id', 'emails', 'name', 'displayName', 'picture.type(large)'],
     },
     baseOauthMiddleware,
   ));

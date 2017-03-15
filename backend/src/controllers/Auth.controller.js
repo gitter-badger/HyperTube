@@ -22,7 +22,7 @@ export const basicOauthController = (req, res) => {
     .then((user) => res.redirect(`${Config.urls.front}/home?token=${createToken(user._id)}`))
     .catch((err) => {
       Logger.error(err)
-      res.redirect(`${Config.urls.front}/login`)
+      //res.redirect(`${Config.urls.front}/login`)
     })
 }
 

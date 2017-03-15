@@ -9,7 +9,7 @@ export default [
     validators: [],
     handler: passport.authenticate('facebook', {
       session: false,
-      scope: ['public_profile', 'email', 'user_about_me'],
+      scope: ['public_profile', 'email', 'user_about_me', 'user_photos'],
     }),
   },
   {
